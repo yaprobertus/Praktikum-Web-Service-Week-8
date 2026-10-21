@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="600" viewBox="0 0 900 600" font-family="Arial, Helvetica, sans-serif">
+  <defs>
+    <marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#334155"/></marker>
+    <marker id="r" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#be123c"/></marker>
+  </defs>
+  <rect width="900" height="600" fill="#ffffff"/>
+  <text x="450" y="32" text-anchor="middle" font-size="20" font-weight="bold" fill="#0f172a">Arsitektur Sistem Reservasi Tiket Kereta (Topik A) dengan API Gateway</text>
+
+  <rect x="290" y="55" width="320" height="70" rx="10" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+  <text x="450" y="85" text-anchor="middle" font-size="16" font-weight="bold" fill="#0c4a6e">Klien</text>
+  <text x="450" y="107" text-anchor="middle" font-size="13" fill="#0c4a6e">Postman / Browser / Aplikasi Mobile</text>
+
+  <line x1="450" y1="125" x2="450" y2="165" stroke="#334155" stroke-width="2" marker-end="url(#a)"/>
+  <text x="462" y="150" font-size="12" fill="#334155">satu alamat saja (lokal: localhost:8080)</text>
+
+  <rect x="200" y="170" width="500" height="150" rx="12" fill="#fef3c7" stroke="#d97706" stroke-width="2.5"/>
+  <text x="450" y="198" text-anchor="middle" font-size="17" font-weight="bold" fill="#78350f">API GATEWAY (Node.js + Express) :8080</text>
+  <rect x="220" y="212" width="460" height="28" rx="6" fill="#ffffff" stroke="#d97706"/>
+  <text x="450" y="231" text-anchor="middle" font-size="13" fill="#78350f">1. Rate limiting: maks. 20 request / 10 detik per IP (429)</text>
+  <rect x="220" y="246" width="460" height="28" rx="6" fill="#ffffff" stroke="#d97706"/>
+  <text x="450" y="265" text-anchor="middle" font-size="13" fill="#78350f">2. Cek API key (header X-API-Key) khusus /booking (401)</text>
+  <rect x="220" y="280" width="460" height="28" rx="6" fill="#ffffff" stroke="#d97706"/>
+  <text x="450" y="299" text-anchor="middle" font-size="13" fill="#78350f">3. Routing: /jadwal/* dan /booking/* (pathRewrite)</text>
+
+  <line x1="330" y1="320" x2="210" y2="390" stroke="#334155" stroke-width="2" marker-end="url(#a)"/>
+  <text x="150" y="360" font-size="12" fill="#334155">/jadwal/* (publik)</text>
+  <line x1="570" y1="320" x2="690" y2="390" stroke="#334155" stroke-width="2" marker-end="url(#a)"/>
+  <text x="650" y="360" font-size="12" fill="#334155">/booking/* (X-API-Key)</text>
+
+  <rect x="60" y="395" width="300" height="120" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="210" y="422" text-anchor="middle" font-size="15" font-weight="bold" fill="#14532d">Service A: jadwal-service :3000</text>
+  <text x="210" y="448" text-anchor="middle" font-size="12" fill="#14532d">Jadwal kereta dan status kursi</text>
+  <text x="210" y="468" text-anchor="middle" font-size="12" fill="#14532d">Seat locking atomik + TTL 10 menit</text>
+  <text x="210" y="488" text-anchor="middle" font-size="12" fill="#14532d">Real-time kursi (Server-Sent Events)</text>
+
+  <rect x="540" y="395" width="300" height="120" rx="10" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+  <text x="690" y="422" text-anchor="middle" font-size="15" font-weight="bold" fill="#4c1d95">Service B: booking-service :3001</text>
+  <text x="690" y="448" text-anchor="middle" font-size="12" fill="#4c1d95">Buat booking, bayar (simulasi), batal</text>
+  <text x="690" y="468" text-anchor="middle" font-size="12" fill="#4c1d95">Idempotency-Key anti booking ganda</text>
+  <text x="690" y="488" text-anchor="middle" font-size="12" fill="#4c1d95">Status booking + batas waktu bayar</text>
+
+  <line x1="540" y1="455" x2="362" y2="455" stroke="#be123c" stroke-width="2" stroke-dasharray="6,4" marker-end="url(#r)"/>
+  <text x="451" y="440" text-anchor="middle" font-size="11" fill="#be123c">lock / confirm / release</text>
+  <text x="451" y="476" text-anchor="middle" font-size="10" fill="#be123c">(internal, X-Internal-Token)</text>
+
+  <text x="450" y="560" text-anchor="middle" font-size="12" fill="#475569">Klien tidak perlu tahu jumlah service atau port aslinya. Jika gateway mati, seluruh sistem tidak dapat diakses.</text>
+</svg>

@@ -1,0 +1,14 @@
+{
+  "name": "jadwal-service",
+  "version": "1.0.0",
+  "description": "Service A - Jadwal kereta & ketersediaan kursi real-time (sumber kebenaran status kursi + locking)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": { "node": ">=18" },
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}

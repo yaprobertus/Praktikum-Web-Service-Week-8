@@ -1,0 +1,14 @@
+{
+  "name": "booking-service",
+  "version": "1.0.0",
+  "description": "Service B - Booking tiket kereta (membuat booking, pembayaran simulasi, pembatalan)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": { "node": ">=18" },
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
